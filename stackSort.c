@@ -1,3 +1,10 @@
+//
+//  stackSort.c
+//  
+//
+//  Created by 李印臣 on 2019/3/9.
+//
+
 #include <stdio.h>
 #include <string.h>
 
@@ -42,28 +49,25 @@ int Push(SAStack *s, ElemType e){
 }
 
 int InitElement(char str[], SAStack *s){
-    char *tmp = NULL, *str2 = NULL, *strEnd = NULL;
+    char *tmp = NULL;
     ElemType e = 0;
-    str2 = tmp = str;
+    tmp = str;
     while(1){
-        while(*tmp != ' ' && *tmp != '\n')
-            tmp++;
-        strEnd = tmp;
-        tmp = str2;
-        while(tmp != strEnd){
+        while(*tmp != ' ' && *tmp != '\n'){
             e = (e << 3) + (e << 1);
             e += *tmp - 48;
             tmp++;
         }
+        
         Push(s, e);
         if(*tmp == '\n')break;
         e = 0;
         tmp++;
-        str2 = tmp;
     }
     return s->top;
 }
-
+/栈排序
+//主要思想：从一个无序数据栈中弹出一个元素，如果该元素小于（因为输出时是数组顺序输出）另一个栈的栈顶元素，则把该栈的栈顶数据弹出，直到该元素不再小于栈顶元素。然后，把该元素压栈。
 void sort(SAStack *s, SAStack *s2){
     ElemType tmp;
     while (!IsEmpty(*s)) {
@@ -88,6 +92,7 @@ int main(int argc, char *argv[]){
     scanf("%d", &n);
     getchar();
     memset(str, 0, 6006);
+    //因为scanf很耗时，减少使用可以加快速度
     fgets(str, 6006, stdin);
     
     Init(&s);
@@ -95,7 +100,7 @@ int main(int argc, char *argv[]){
     s.stack = elements;
     s2.stack = elements2;
     InitElement(str, &s);
-
+    
     sort(&s, &s2);
     for (i = 0; i < n; i++) {
         printf("%d\n", elements2[i]);
