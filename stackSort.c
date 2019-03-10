@@ -47,39 +47,47 @@ int Push(SAStack *s, ElemType e){
     s->stack[s->top] = e;
     return s->top;
 }
-
-int InitElement(char str[], SAStack *s){
+   
+//栈排序
+//主要思想：从一个无序数据栈中弹出一个元素，如果该元素小于（因为输出时是数组顺序输出）另一个栈的栈顶元素，则把该栈的栈顶数据弹出，直到该元素不再小于栈顶元素。然后，把该元素压栈。
+    int sort(char str[], SAStack *s, SAStack *s2){
     char *tmp = NULL;
     ElemType e = 0;
     tmp = str;
+
     while(1){
-        while(*tmp != ' ' && *tmp != '\n'){
+        while(*tmp > 47){
             e = (e << 3) + (e << 1);
             e += *tmp - 48;
             tmp++;
         }
+        //如果是空或小于等于栈顶1，栈2为空或大于栈2（小于栈2，则出栈2，入栈1），则入栈1；
+        //如果大于栈顶1，则出栈1，入栈2，然后入栈1
+        if(!IsEmpty(*s) && e <= GetTop(*s)){
+            while(!IsEmpty(*s2) && e < GetTop(*s2)){
+                Push(s, Pop(s2));
+            }
+        }else{
+            while(!IsEmpty(*s) && e > GetTop(*s)){
+                Push(s2, Pop(s));
+            }
+        }
         
         Push(s, e);
-        if(*tmp == '\n')break;
+        
+        if(*tmp == '\n'){
+            while(!IsEmpty(*s2)){
+                Push(s, Pop(s2));
+            }
+            break;
+        }
+        
         e = 0;
         tmp++;
     }
     return s->top;
 }
-/栈排序
-//主要思想：从一个无序数据栈中弹出一个元素，如果该元素小于（因为输出时是数组顺序输出）另一个栈的栈顶元素，则把该栈的栈顶数据弹出，直到该元素不再小于栈顶元素。然后，把该元素压栈。
-void sort(SAStack *s, SAStack *s2){
-    ElemType tmp;
-    while (!IsEmpty(*s)) {
-        tmp = Pop(s);
-        if(!IsEmpty(*s2)){
-            while(tmp < GetTop(*s2)){
-                Push(s, Pop(s2));
-            }
-        }
-        Push(s2, tmp);
-    }
-}
+
 
 int main(int argc, char *argv[]){
     int i, n;
@@ -95,15 +103,19 @@ int main(int argc, char *argv[]){
     //因为scanf很耗时，减少使用可以加快速度
     fgets(str, 6006, stdin);
     
+    for (i = n - 1 ; i >= 0; i--) {
+        elements[i] = 0;
+        elements2[i] = 0;
+    }
+    
     Init(&s);
     Init(&s2);
     s.stack = elements;
     s2.stack = elements2;
-    InitElement(str, &s);
     
-    sort(&s, &s2);
-    for (i = 0; i < n; i++) {
-        printf("%d\n", elements2[i]);
+    sort(str, &s, &s2);
+    for (i = n - 1 ; i >= 0; i--) {
+        printf("%d\n", elements[i]);
     }
     return 0;
 }
