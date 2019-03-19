@@ -11,7 +11,7 @@
 #define true 1
 #define false 0
 
-void bubbleSort0(int  a[], int n){
+void bubbleSort(int  a[], int n){
     int i, j;
     
     for(i = 0; i < n - 1; i++){
@@ -21,13 +21,9 @@ void bubbleSort0(int  a[], int n){
             }
         }
     }
-    
-    for(i = 0; i < n; i++){
-        printf("%d%c", a[i], i == n - 1?'\n':' ');
-    }
 }
 
-void bubbleSort(int  a[], int n){
+void bubbleSort1(int  a[], int n){
     int i;
     bool sorted = false;
     
