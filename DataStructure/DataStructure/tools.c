@@ -1,15 +1,15 @@
 //
-//  Sort.h
+//  tools.c
 //  DataStructure
 //
 //  Created by 李印臣 on 2019/3/19.
 //  Copyright © 2019年 李印臣. All rights reserved.
 //
 
-#ifndef Sort_h
-#define Sort_h
-
-#include <stdio.h>
 #include "tools.h"
-void bubbleSort(int  a[], int n);
-#endif /* Sort_h */
+void swap(int *a, int *b){
+    int tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}

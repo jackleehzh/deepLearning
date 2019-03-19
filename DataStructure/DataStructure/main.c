@@ -10,14 +10,19 @@
 
 #include "sort.h"
 
-
+void printSort(int a[], int n){
+    int i;
+    for(i = 0; i < n; i++){
+        printf("%d%c", a[i], i == n - 1?'\n':' ');
+    }
+}
 
 int main(int argc, const char * argv[]) {
     
     int a[] = {4, 5, 2, 1, 3};
     int n = 5;
     bubbleSort(a, n);
-    
+    printSort(a, n);
 
     return 0;
 }
