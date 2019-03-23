@@ -12,9 +12,9 @@ int powers0(int a, int n){
     if(n == 0) return 1;
     if(n == 1) return a;
     if(n % 2 == 0){
-        return powers(a, n / 2) * powers(a, n / 2);
+        return powers(a, n >> 1) * powers(a, n >> 1);
     }else{
-        return 2 * powers(a, n / 2) * powers(a, n / 2);
+        return 2 * powers(a, n >> 1) * powers(a, n >> 1);
     }
 }
 
@@ -38,7 +38,7 @@ int powers2(int a, int n){
         if(n & 1){
             result = result * tmp;
         }
-        n = n / 2;
+        n = n >> 1;
         tmp = tmp * tmp;
     }
     result = result * tmp;
@@ -50,7 +50,7 @@ int powers(int a, int n){
     if(n == 0) return 1;
     if(n == 1) return a;
     
-    tmp = powers(a, n / 2);
+    tmp = powers(a, n >> 1);
     return (n & 1)? 2 * tmp * tmp : tmp * tmp;
 }
 
@@ -68,7 +68,7 @@ int multi(int a, int b){
         if(b & 1){
             result = result + tmp;
         }
-        b = b / 2;
+        b = b >> 1;
         tmp = tmp + tmp;
     }
     result = result + tmp;
