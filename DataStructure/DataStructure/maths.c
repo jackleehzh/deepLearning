@@ -75,7 +75,7 @@ int multi(int a, int b){
     return result;
 }
 
-int divsion(int a, int b){
+int divsion0(int a, int b){
     int result = 0;
     int n = 1, m;
     int tmp = b;
@@ -102,6 +102,37 @@ int divsion(int a, int b){
     
     return m;
 
+}
+
+
+int divsion(int a, int b){
+    int result = a, result2 = 0;
+    int n = 0;
+    int tmp = b, tmp2 = 1;
+    
+    if(b > a) return 0;
+    while(b > 0){
+        b = b >> 1;
+        n = n + 1;
+    }
+    b = tmp;
+    while(a > b){
+        a = a >> n;
+        while(a > 1){
+            a = a >> 1;
+            tmp = tmp << 1;
+            tmp2 = tmp2 << 1;
+        }
+        
+        a = result - tmp;
+        result = a;
+        result2 = result2 + tmp2;
+        tmp = b;
+        tmp2 = 1;
+    }
+
+    return result2;
+    
 }
 
 int sub(int a, int b){
