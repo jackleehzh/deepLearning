@@ -36,14 +36,25 @@ int powers(int a, int n){
     if(n == 1) return a;
     
     while(n > 1){
-        if(n % 2 == 0){
-            tmp = tmp * tmp;
-            n = n / 2;
-        }else{
+        if(n % 2 != 0){
             result = result * tmp;
-            n = n - 1;
         }
+        n = n / 2;
+        tmp = tmp * tmp;
     }
     result = result * tmp;
     return result;
+}
+
+int powers2(int a, int n){
+    int tmp;
+    if(n == 0) return 1;
+    if(n == 1) return a;
+    
+    tmp = powers(a, n / 2);
+    if(n % 2 == 0){
+        return tmp * tmp;
+    }else{
+        return 2 * tmp * tmp;
+    }
 }
