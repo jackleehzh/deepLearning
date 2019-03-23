@@ -30,7 +30,6 @@ int powers1(int a, int n){
 int powers2(int a, int n){
     int result = 1;
     int tmp = a;
-    int i;
     
     if(n == 0) return 1;
     if(n == 1) return a;
@@ -53,4 +52,25 @@ int powers(int a, int n){
     
     tmp = powers(a, n / 2);
     return (n & 1)? 2 * tmp * tmp : tmp * tmp;
+}
+
+int multi(int a, int b){
+    int result = 0;
+    int tmp;
+    
+    if(a < b)swap(&a, &b);
+    tmp = a;
+    
+    if(b == 0) return 0;
+    if(b == 1) return a;
+    
+    while(b > 1){
+        if(b & 1){
+            result = result + tmp;
+        }
+        b = b / 2;
+        tmp = tmp + tmp;
+    }
+    result = result + tmp;
+    return result;
 }
