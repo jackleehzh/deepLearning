@@ -74,3 +74,32 @@ int multi(int a, int b){
     result = result + tmp;
     return result;
 }
+
+int divsion(int a, int b){
+    int result = 0;
+    int n = 1, m;
+    int tmp = b;
+    
+    if(b > a) return 0;
+    
+    while(a > tmp){
+        tmp = tmp << 1;
+        n = n << 1;
+    }
+    result = tmp >> 1;
+    m = n >> 1;
+    
+    while(a > result){
+        if(a < result + tmp){
+            while(a < result + tmp){
+                tmp = tmp >> 1;
+                n = n >> 1;
+            }
+            result = result + tmp;
+            m = m + n;
+        }
+    }
+    
+    return m;
+
+}
