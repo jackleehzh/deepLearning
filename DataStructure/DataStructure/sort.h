@@ -6,10 +6,12 @@
 //  Copyright © 2019年 李印臣. All rights reserved.
 //
 
-#ifndef Sort_h
-#define Sort_h
+#ifndef sort_h
+#define sort_h
 
 #include <stdio.h>
 #include "tools.h"
 void bubbleSort(int  a[], int n);
+void reverse(int a[], int m, int n);
+void reverseSort(int a[], int lo, int hi);
 #endif /* Sort_h */

@@ -21,7 +21,9 @@ int main(int argc, const char * argv[]) {
     
     int a[] = {4, 5, 2, 1, 3};
     int n = 5;
-    bubbleSort(a, n);
+    //bubbleSort(a, n);
+    //reverse(a, 0, 4);
+    reverseSort(a, 0, 4);
     printSort(a, n);
 
     return 0;
