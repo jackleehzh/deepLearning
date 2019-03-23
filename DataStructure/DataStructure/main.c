@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #include "sort.h"
+#include "maths.h"
 
 void printSort(int a[], int n){
     int i;
@@ -20,11 +21,15 @@ void printSort(int a[], int n){
 int main(int argc, const char * argv[]) {
     
     int a[] = {4, 5, 2, 1, 3};
-    int n = 5;
+    int n = 13;
     //bubbleSort(a, n);
     //reverse(a, 0, 4);
-    reverseSort(a, 0, 4);
-    printSort(a, n);
+    //reverseSort(a, 0, 4);
+    //printSort(a, n);
+    while(n > -1){
+        printf("%d\n", powers(2, n));
+        n--;
+    }
 
     return 0;
 }
