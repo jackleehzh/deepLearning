@@ -27,7 +27,7 @@ int powers1(int a, int n){
     return result;
 }
 
-int powers(int a, int n){
+int powers2(int a, int n){
     int result = 1;
     int tmp = a;
     int i;
@@ -36,7 +36,7 @@ int powers(int a, int n){
     if(n == 1) return a;
     
     while(n > 1){
-        if(n % 2 != 0){
+        if(n & 1){
             result = result * tmp;
         }
         n = n / 2;
@@ -46,15 +46,11 @@ int powers(int a, int n){
     return result;
 }
 
-int powers2(int a, int n){
+int powers(int a, int n){
     int tmp;
     if(n == 0) return 1;
     if(n == 1) return a;
     
     tmp = powers(a, n / 2);
-    if(n % 2 == 0){
-        return tmp * tmp;
-    }else{
-        return 2 * tmp * tmp;
-    }
+    return (n & 1)? 2 * tmp * tmp : tmp * tmp;
 }
