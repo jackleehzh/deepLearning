@@ -55,12 +55,38 @@ void reverse(int a[], int lo, int hi){
     }
 }
 
-void reverseSort(int a[], int lo, int hi){
+//该方法是对快速排序方法分组方式的改进
+void reverseSort0(int a[], int lo, int hi){
     int i, mid;
     for(i = lo; i < hi - i + lo; i++){
         if(a[i] > a[hi - i + lo])
             swap(&a[i], &a[hi - i + lo]);
     }
+    
+    mid = (hi + lo) / 2;
+    if(lo < mid){
+        reverseSort(a, lo, mid);
+    }
+    if(mid + 1 < hi){
+        reverseSort(a, mid + 1, hi);
+    }
+}
+//这种写法并不会减少交换次数
+void reverseSort(int a[], int lo, int hi){
+    int i, mid, pivot = 0, tmp = -1;
+    for(i = lo; i < hi - i + lo; i++){
+        if(a[i] > a[hi - i + lo]){
+            if(tmp == -1){
+                tmp = a[i];
+            }else{
+                a[pivot] = a[i];
+            }
+            a[i] = a[hi - i + lo];
+            pivot = hi - i + lo;
+        }
+    }
+    if(tmp != -1)
+        a[pivot] = tmp;
     
     mid = (hi + lo) / 2;
     if(lo < mid){
