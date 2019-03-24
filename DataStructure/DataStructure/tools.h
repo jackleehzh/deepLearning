@@ -10,5 +10,8 @@
 #define tools_h
 
 #include <stdio.h>
+#include <math.h>
 void swap(int *a, int *b);
+//int fibonacci(int n, int *prev);
+int fibonacci(int n);
 #endif /* tools_h */
